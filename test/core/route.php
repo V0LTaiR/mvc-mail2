@@ -17,7 +17,7 @@ class Route
             $method_name = $parts[2];
         }
 		
-		#Object/method/model autoload (if exist)
+		
         $controller_filename = 'Controller_' . $class_name;
         $controller_file = $controller_filename . '.php';
         $controller_path = './application/controllers/' . $controller_file;
