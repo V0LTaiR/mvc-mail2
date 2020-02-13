@@ -6,27 +6,33 @@ class Model_Mail extends Model
     {
         $result = "";
         if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            $result .= 'ошибка! Email указан некорректно</br>'. PHP_EOL;
+            $result .= 'error! Email is incorrect</br>' . PHP_EOL;
         }
 
         if (empty(trim($name))) {
-            $result .= 'ошибка! Вы не представились!</br>' . PHP_EOL;
+            $result .= 'error! You did not introduce yourself!</br>' . PHP_EOL;
         }
 
         if (empty(trim($theme))) {
-            $result .= 'ошибка! Вы не указали тему письма</br>'.PHP_EOL;
+            $result .= 'error! You did not specify the theme</br>' . PHP_EOL;
         }
 
         if (empty(trim($text))) {
-            $result .= 'ошибка! Вы не ввели сообщение</br>' . PHP_EOL;
+            $result .= 'error! You did not enter a message</br>' . PHP_EOL;
         }
 
         if ($result === "") {
-            $text = "Вам было отправлено сообщение от пользователя $name ($mail)    
+            $text = "A message was sent to you from $name ($mail)    
 
 $text";
-            $result = mail('admin@site.ru', $theme, $text) ? 'письмо успешно отправлено' : 'неизвестная ошибка при отправке!';
+            $result = mail('admin@site.ru', $theme, $text) ? 'success' : 'Unknown sending error!';
         }
         return $result;
+    }
+
+    public function resultMail($result)
+    {
+        $json = json_encode($result);
+        echo $json;
     }
 }
